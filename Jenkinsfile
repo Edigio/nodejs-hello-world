@@ -1,16 +1,6 @@
 //Jenkinsfile
 node {
 
-stage('Preparation') {
-      //Installing kubectl in Jenkins agent
-      withEnv(['HTTP_PROXY=http://192.168.21.140:8888']) {
-            sh 'curl -LO https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl'
-            sh 'chmod +x ./kubectl && mv kubectl /usr/local/sbin'
-      }
-//Clone git repository
-  git url:'https://github.com/Edigio/nodejs-hello-world.git'
-   }
-
 stage('Integration') {
  
       withKubeConfig([credentialsId: 'jenkins-deployer-credentials', serverUrl: 'https://104.155.31.202']) {
