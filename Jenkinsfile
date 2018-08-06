@@ -1,3 +1,4 @@
+withEnv(['HTTP_PROXY=http://192.168.21.140:8888']) {
 //Jenkinsfile
 node {
 
@@ -86,4 +87,5 @@ sh 'kubectl apply -f deploy/ --namespace=myapp-production'
           }                                    
       }
    }
+}
 }
